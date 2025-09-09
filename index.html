@@ -1,0 +1,262 @@
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Nails – דמו</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: Heebo, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    .card { border: 1px solid rgba(0,0,0,0.06); border-radius: 1.2rem; background: white; }
+    .btn { border-radius: 9999px; padding: 0.6rem 1rem; font-weight: 600; }
+    .btn-outline { border: 1px solid rgb(244 63 94 / 0.6); color: rgb(190 18 60); background: white; }
+    .btn-solid { background: rgb(244 63 94); color: white; }
+    .badge { display:inline-flex; align-items:center; gap:.25rem; border-radius:9999px; padding:.25rem .6rem; font-size:.75rem; background:#ffe4e6; color:#9f1239; border:1px solid #fecdd3;}
+    .chip { border: 1px solid #fecdd3; border-radius: 9999px; padding: .2rem .6rem; font-size: .75rem; color:#9f1239; background:white;}
+    .shadow-soft { box-shadow: 0 10px 30px rgba(244, 63, 94, 0.08); }
+    .slider { width: 100%; }
+    .sticky-header { position: sticky; top: 0; backdrop-filter: blur(8px); }
+    .icon { width: 18px; height: 18px; display:inline-block; }
+  </style>
+</head>
+<body class="min-h-screen bg-rose-50 text-rose-950">
+  <header class="sticky-header z-50 bg-white/80 border-b">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl font-extrabold tracking-tight">Studio Nails</span>
+        <span class="badge">פרימיום</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#services" class="hover:underline">שירותים</a>
+        <a href="#gallery" class="hover:underline">גלריה</a>
+        <a href="#reviews" class="hover:underline">המלצות</a>
+        <a href="#contact" class="hover:underline">יצירת קשר</a>
+      </nav>
+      <a href="#contact" class="btn btn-solid">הזמיני תור</a>
+    </div>
+  </header>
+
+  <section class="bg-gradient-to-b from-rose-100 to-rose-50">
+    <div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">ציפורניים מושלמות, חוויה מפנקת</h1>
+        <p class="mt-4 text-rose-700">בניית ציפורניים מקצועית בסטנדרט גבוה: לק ג'ל, מבנה אנטומי, בנייה בג'ל, פוליג'ל ולק ג'ל ברגליים.</p>
+        <div id="category-buttons" class="mt-6 flex flex-wrap gap-3"></div>
+      </div>
+      <div class="aspect-[4/3] rounded-3xl shadow-soft overflow-hidden">
+        <img alt="nails hero" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1512203201228-56f2b1b3bf37?q=80&w=1600&auto=format&fit=crop" />
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="border-y bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-6">
+      <div class="grid md:grid-cols-12 gap-4 items-center">
+        <div class="md:col-span-6 flex items-center gap-2">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input id="search" class="w-full rounded-2xl border px-4 py-2" placeholder="חיפוש שירות, תג או תיאור (לדוגמה: פרנץ', חיזוק, פדיקור)" />
+        </div>
+        <div class="md:col-span-3 flex items-center gap-3">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="4" y1="21" x2="4" y2="14"/><line x1="12" y1="21" x2="12" y2="10"/><line x1="20" y1="21" x2="20" y2="3"/></svg>
+          <span class="text-sm text-rose-700 whitespace-nowrap">תקציב מקסימלי: <span id="budgetValue">300</span>₪</span>
+        </div>
+        <div class="md:col-span-3">
+          <input id="budget" class="slider" type="range" min="80" max="400" step="10" value="300" />
+        </div>
+      </div>
+
+      <div class="mt-4 flex flex-wrap items-center gap-2">
+        <label class="text-sm text-rose-700">מיון לפי:</label>
+        <div class="flex gap-2">
+          <button data-sort="popular" class="btn btn-outline" id="sort-popular">פופולריות</button>
+          <button data-sort="price" class="btn btn-outline" id="sort-price">מחיר</button>
+          <button data-sort="time" class="btn btn-outline" id="sort-time">זמן טיפול</button>
+        </div>
+      </div>
+
+      <div id="cards" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <section id="gallery" class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold mb-4">גלריה</h2>
+    <p class="text-rose-700 mb-6">מבחר עבודות אמיתיות מהסטודיו.</p>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4" id="gallery-grid"></div>
+  </section>
+
+  <section id="reviews" class="bg-white border-y">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <h2 class="text-3xl font-bold mb-4">מה הלקוחות אומרות</h2>
+      <div class="grid md:grid-cols-3 gap-6" id="reviews-grid"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold mb-4">יצירת קשר</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card p-5">
+        <div class="text-lg font-semibold mb-2 flex items-center gap-2"><span>☎️</span> טלפון / וואטסאפ</div>
+        <p class="text-rose-700">050-000-0000</p>
+        <a class="btn btn-solid inline-flex mt-3 items-center gap-2" href="https://wa.me/972500000000" target="_blank" rel="noreferrer">שלחי הודעה</a>
+      </div>
+      <div class="card p-5">
+        <div class="text-lg font-semibold mb-2 flex items-center gap-2"><span>📅</span> הזמנת תור</div>
+        <p class="text-rose-700">לחצי להזמנה דרך היומן המקוון.</p>
+        <a href="#contact" class="btn btn-solid inline-block mt-3">פתחי יומן</a>
+      </div>
+      <div class="card p-5">
+        <div class="text-lg font-semibold mb-2 flex items-center gap-2"><span>📍</span> הסטודיו</div>
+        <p class="text-rose-700">רח' הדוגמא 12, תל אביב</p>
+        <a class="inline-flex items-center gap-1 text-rose-700 underline mt-2" href="https://maps.google.com" target="_blank" rel="noreferrer">פתחי במפות →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t bg-rose-50">
+    <div class="max-w-6xl mx-auto px-4 py-8 text-sm text-rose-700 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>© <span id="year"></span> Studio Nails. כל הזכויות שמורות.</div>
+      <div class="flex items-center gap-3">
+        <a href="#" class="hover:underline">תקנון</a>
+        <a href="#" class="hover:underline">מדיניות פרטיות</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/972500000000" class="fixed bottom-6 left-6 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg" aria-label="WhatsApp" target="_blank" rel="noreferrer">💬</a>
+
+  <script>
+    const CATEGORIES = [
+      { id: "all", label: "הכל" },
+      { id: "gel-polish", label: "לק ג'ל" },
+      { id: "anatomy", label: "מבנה אנטומי" },
+      { id: "gel-build", label: "בנייה בג'ל" },
+      { id: "polygel", label: "פוליג'ל" },
+      { id: "feet-gel", label: "לק ג'ל ברגליים" },
+    ];
+
+    const SERVICES = [
+      { id: "svc1", title: "לק ג'ל קלאסי בידיים", category: "gel-polish", price: 140, duration: 60, rating: 4.9, image: "https://images.unsplash.com/photo-1604882737274-3be46b0299fd?q=80&w=1600&auto=format&fit=crop", tags: ["צרפתי", "ניוד", "עמידות"], description: "הכנה עדינה, ציפוי ג'ל איכותי ומבריק במבחר גוונים." },
+      { id: "svc2", title: "מבנה אנטומי מושלם", category: "anatomy", price: 220, duration: 90, rating: 5.0, image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=1600&auto=format&fit=crop", tags: ["חיזוק", "טבעי", "בריאות הציפורן"], description: "בניית מבנה אנטומי לשמירה על חוזק ומראה טבעי." },
+      { id: "svc3", title: "בנייה בג'ל – עיצוב מלא", category: "gel-build", price: 280, duration: 120, rating: 4.8, image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1600&auto=format&fit=crop", tags: ["הארכה", "שקוף", "פרנץ'"], description: "בנייה מלאה בג'ל עם התאמה אישית לאורך ולצורה." },
+      { id: "svc4", title: "פוליג'ל – חיזוק והארכה", category: "polygel", price: 260, duration: 110, rating: 4.7, image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop", tags: ["אבן בנייה", "עמידות", "מאט/מבריק"], description: "פוליג'ל לשילוב של גמישות וחוזק עם גימור נקי." },
+      { id: "svc5", title: "לק ג'ל ברגליים", category: "feet-gel", price: 160, duration: 60, rating: 4.9, image: "https://images.unsplash.com/photo-1591382696684-2933a6f8b6ab?q=80&w=1600&auto=format&fit=crop", tags: ["קיץ", "פדיקור", "היגיינה"], description: "פדיקור עדין וציפוי ג'ל עמיד לכל עונה." },
+    ];
+
+    const GALLERY_IDS = ["photo-1556228720-195a672e8a03","photo-1519017769780-8e1e3a19f2d1","photo-1560066984-138dadb4c035","photo-1522335789203-aabd1fc54bc9","photo-1604654894610-df63bc536371","photo-1604882737274-3be46b0299fd"];
+    const REVIEWS = [
+      { name: "שירן", text: "שירות מושלם! הציפורניים מחזיקות שלושה שבועות ויותר." },
+      { name: "עמית", text: "יצא בדיוק כמו השראה שהראיתי. נקי ומדויק!" },
+      { name: "נעה", text: "מבנה אנטומי ברמה גבוהה, סוף סוף ציפורניים חזקות!" },
+    ];
+
+    let activeCat = "all";
+    let maxPrice = 300;
+    let sortKey = "popular";
+    let query = "";
+
+    const cardsEl = document.getElementById("cards");
+    const galleryEl = document.getElementById("gallery-grid");
+    const reviewsEl = document.getElementById("reviews-grid");
+    const budgetEl = document.getElementById("budget");
+    const budgetValueEl = document.getElementById("budgetValue");
+    const searchEl = document.getElementById("search");
+    const categoryButtonsEl = document.getElementById("category-buttons");
+
+    function renderCategories() {
+      categoryButtonsEl.innerHTML = "";
+      CATEGORIES.forEach(c => {
+        const btn = document.createElement("button");
+        btn.className = "btn " + (activeCat === c.id ? "btn-solid" : "btn-outline");
+        btn.textContent = c.label;
+        btn.onclick = () => { activeCat = c.id; renderCategories(); renderCards(); };
+        categoryButtonsEl.appendChild(btn);
+      });
+    }
+
+    function renderCards() {
+      const q = query.trim().toLowerCase();
+      let rows = SERVICES.filter(s => s.price <= maxPrice);
+      if (activeCat !== "all") rows = rows.filter(s => s.category === activeCat);
+      if (q) {
+        rows = rows.filter(s =>
+          s.title.toLowerCase().includes(q) ||
+          s.description.toLowerCase().includes(q) ||
+          s.tags.some(t => t.toLowerCase().includes(q))
+        );
+      }
+      if (sortKey === "popular") rows.sort((a,b) => b.rating - a.rating);
+      if (sortKey === "price") rows.sort((a,b) => a.price - b.price);
+      if (sortKey === "time") rows.sort((a,b) => a.duration - b.duration);
+
+      cardsEl.innerHTML = "";
+      rows.forEach(s => {
+        const card = document.createElement("div");
+        card.className = "card overflow-hidden shadow-soft";
+        card.innerHTML = `
+          <div class="relative">
+            <img src="${s.image}" alt="${s.title}" class="h-48 w-full object-cover" />
+            <div class="absolute top-3 left-3 right-3 flex items-center justify-between">
+              <span class="badge">${CATEGORIES.find(c=>c.id===s.category)?.label || ""}</span>
+              <button class="btn btn-outline">❤</button>
+            </div>
+          </div>
+          <div class="p-4 space-y-3">
+            <div class="text-xl font-semibold flex items-center justify-between gap-2">
+              <span>${s.title}</span>
+              <span class="text-rose-600 font-bold">${s.price}₪</span>
+            </div>
+            <p class="text-sm text-rose-700">${s.description}</p>
+            <div class="flex flex-wrap gap-2">
+              ${s.tags.map(t => <span class="chip">#${t}</span>).join("")}
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span>⭐ ${s.rating.toFixed(1)}</span>
+              <span>⏱ ${s.duration} דק'</span>
+            </div>
+            <div class="flex gap-2 pt-2">
+              <a href="#contact" class="btn btn-solid flex-1 text-center">הזמיני תור</a>
+              <a href="#contact" class="btn btn-outline">שיחה</a>
+            </div>
+          </div>
+        `;
+        cardsEl.appendChild(card);
+      });
+    }
+
+    function renderGallery() {
+      galleryEl.innerHTML = GALLERY_IDS.map(id => `
+        <img class="rounded-3xl object-cover w-full h-56" alt="גלריה" src="https://images.unsplash.com/${id}?q=80&w=1200&auto=format&fit=crop" />
+      `).join("");
+    }
+
+    function renderReviews() {
+      reviewsEl.innerHTML = REVIEWS.map(r => `
+        <div class="card p-5">
+          <div class="text-lg font-semibold mb-2">${r.name}</div>
+          <div class="text-rose-700">“${r.text}”</div>
+        </div>
+      `).join("");
+    }
+
+    // events
+    budgetEl.addEventListener("input", (e) => {
+      maxPrice = parseInt(e.target.value, 10);
+      budgetValueEl.textContent = maxPrice;
+      renderCards();
+    });
+    searchEl.addEventListener("input", (e) => { query = e.target.value; renderCards(); });
+    document.getElementById("sort-popular").onclick = () => { sortKey = "popular"; renderCards(); };
+    document.getElementById("sort-price").onclick = () => { sortKey = "price"; renderCards(); };
+    document.getElementById("sort-time").onclick = () => { sortKey = "time"; renderCards(); };
+
+    // init
+    document.getElementById("year").textContent = new Date().getFullYear();
+    renderCategories();
+    renderCards();
+    renderGallery();
+    renderReviews();
+  </script>
+</body>
+</html>
